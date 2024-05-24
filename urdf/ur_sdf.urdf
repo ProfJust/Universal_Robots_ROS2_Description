@@ -1,0 +1,716 @@
+<sdf version='1.7'>
+  <model name='ur'>
+    <joint name='base_joint' type='fixed'>
+      <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      <parent>world</parent>
+      <child>base_link</child>
+    </joint>
+    <link name='base_link'>
+      <pose relative_to='base_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.00305317</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00305317</iyy>
+          <iyz>0</iyz>
+          <izz>0.005625</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_inertia_collision'>
+        <pose>0 0 0 0 0 -0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/base.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_inertia_visual'>
+        <pose>0 0 0 0 0 -0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder_pan_joint' type='revolute'>
+      <pose relative_to='base_link'>0 0 0.15185 0 -0 3.14159</pose>
+      <parent>base_link</parent>
+      <child>shoulder_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-6.28319</lower>
+          <upper>6.28319</upper>
+          <effort>56</effort>
+          <velocity>3.14159</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='shoulder_link'>
+      <pose relative_to='shoulder_pan_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>2</mass>
+        <inertia>
+          <ixx>0.00809316</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00809316</iyy>
+          <iyz>0</iyz>
+          <izz>0.005625</izz>
+        </inertia>
+      </inertial>
+      <collision name='shoulder_link_collision'>
+        <pose>0 0 0 0 -0 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/shoulder.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='shoulder_link_visual'>
+        <pose>0 0 0 0 -0 3.14159</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/shoulder.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder_lift_joint' type='revolute'>
+      <pose relative_to='shoulder_link'>0 0 0 1.5708 -0 0</pose>
+      <parent>shoulder_link</parent>
+      <child>upper_arm_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-6.28319</lower>
+          <upper>6.28319</upper>
+          <effort>56</effort>
+          <velocity>3.14159</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='upper_arm_link'>
+      <pose relative_to='shoulder_lift_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.121825 0 0.12 0 1.5708 0</pose>
+        <mass>3.42</mass>
+        <inertia>
+          <ixx>0.0217285</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0217285</iyy>
+          <iyz>0</iyz>
+          <izz>0.00961875</izz>
+        </inertia>
+      </inertial>
+      <collision name='upper_arm_link_collision'>
+        <pose>0 0 0.12 1.5708 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/upperarm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='upper_arm_link_visual'>
+        <pose>0 0 0.12 1.5708 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/upperarm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='elbow_joint' type='revolute'>
+      <pose relative_to='upper_arm_link'>-0.24355 0 0 0 -0 0</pose>
+      <parent>upper_arm_link</parent>
+      <child>forearm_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>28</effort>
+          <velocity>3.14159</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='forearm_link'>
+      <pose relative_to='elbow_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.1066 0 0.027 0 1.5708 0</pose>
+        <mass>1.26</mass>
+        <inertia>
+          <ixx>0.00654457</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00654457</iyy>
+          <iyz>0</iyz>
+          <izz>0.00354375</izz>
+        </inertia>
+      </inertial>
+      <collision name='forearm_link_collision'>
+        <pose>0 0 0.027 1.5708 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/forearm.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='forearm_link_visual'>
+        <pose>0 0 0.027 1.5708 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/forearm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='wrist_1_joint' type='revolute'>
+      <pose relative_to='forearm_link'>-0.2132 0 0.13105 0 -0 0</pose>
+      <parent>forearm_link</parent>
+      <child>wrist_1_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-6.28319</lower>
+          <upper>6.28319</upper>
+          <effort>12</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='wrist_1_link'>
+      <pose relative_to='wrist_1_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.8</mass>
+        <inertia>
+          <ixx>0.002085</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.002085</iyy>
+          <iyz>0</iyz>
+          <izz>0.00225</izz>
+        </inertia>
+      </inertial>
+      <collision name='wrist_1_link_collision'>
+        <pose>0 0 -0.104 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/wrist1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wrist_1_link_visual'>
+        <pose>0 0 -0.104 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/wrist1.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='wrist_2_joint' type='revolute'>
+      <pose relative_to='wrist_1_link'>0 -0.08535 -0 1.5708 -0 0</pose>
+      <parent>wrist_1_link</parent>
+      <child>wrist_2_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-6.28319</lower>
+          <upper>6.28319</upper>
+          <effort>12</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='wrist_2_link'>
+      <pose relative_to='wrist_2_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>0.8</mass>
+        <inertia>
+          <ixx>0.002085</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.002085</iyy>
+          <iyz>0</iyz>
+          <izz>0.00225</izz>
+        </inertia>
+      </inertial>
+      <collision name='wrist_2_link_collision'>
+        <pose>0 0 -0.08535 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/wrist2.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wrist_2_link_visual'>
+        <pose>0 0 -0.08535 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/wrist2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='wrist_3_joint' type='revolute'>
+      <pose relative_to='wrist_2_link'>0 0.0921 -0 -1.5708 0 -0</pose>
+      <parent>wrist_2_link</parent>
+      <child>wrist_3_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-6.28319</lower>
+          <upper>6.28319</upper>
+          <effort>12</effort>
+          <velocity>6.28319</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='wrist_3_link'>
+      <pose relative_to='wrist_3_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 1.5e-05 0.014248 0 -0 0</pose>
+        <mass>1.0132</mass>
+        <inertia>
+          <ixx>0.00127964</ixx>
+          <ixy>2.936e-08</ixy>
+          <ixz>1.44351e-19</ixz>
+          <iyy>0.00135148</iyy>
+          <iyz>-5.95544e-07</iyz>
+          <izz>0.000573828</izz>
+        </inertia>
+      </inertial>
+      <collision name='wrist_3_link_collision'>
+        <pose>0 0 -0.0921 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/collision/wrist3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='wrist_3_link_fixed_joint_lump__robotiq_85_base_link_collision_1'>
+        <pose>0 0 0 -0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/robotiq_base.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wrist_3_link_visual'>
+        <pose>0 0 -0.0921 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/ur_description/share/ur_description/meshes/ur3e/visual/wrist3.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='wrist_3_link_fixed_joint_lump__robotiq_85_base_link_visual_1'>
+        <pose>0 0 0 -0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/robotiq_base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='robotiq_85_left_inner_knuckle_joint' type='revolute'>
+      <pose relative_to='wrist_3_link'>0.0127 0 0.06142 -0 -0 0</pose>
+      <parent>wrist_3_link</parent>
+      <child>robotiq_85_left_inner_knuckle_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='robotiq_85_left_inner_knuckle_link'>
+      <pose relative_to='robotiq_85_left_inner_knuckle_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.018977 0.00015 0.022471 0 -0 0</pose>
+        <mass>0.0296938</mass>
+        <inertia>
+          <ixx>9.57136e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>-3.93424e-06</ixz>
+          <iyy>8.69056e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.19144e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='robotiq_85_left_inner_knuckle_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/left_inner_knuckle.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='robotiq_85_left_inner_knuckle_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/left_inner_knuckle.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='robotiq_85_left_knuckle_joint' type='revolute'>
+      <pose relative_to='wrist_3_link'>0.030601 0 0.054905 -0 -0 0</pose>
+      <parent>wrist_3_link</parent>
+      <child>robotiq_85_left_knuckle_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.8</upper>
+          <effort>50</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='robotiq_85_left_knuckle_link'>
+      <pose relative_to='robotiq_85_left_knuckle_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.029387 -0.000551 0.011107 0 -0 0</pose>
+        <mass>0.0564515</mass>
+        <inertia>
+          <ixx>1.67295e-05</ixx>
+          <ixy>2.37618e-07</ixy>
+          <ixz>-5.75738e-06</ixz>
+          <iyy>2.21234e-05</iyy>
+          <iyz>1.61032e-07</iyz>
+          <izz>1.29013e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='robotiq_85_left_knuckle_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/left_knuckle.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='robotiq_85_left_knuckle_link_fixed_joint_lump__robotiq_85_left_finger_link_collision_1'>
+        <pose>0.031526 0 -0.003763 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/left_finger.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='robotiq_85_left_knuckle_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/left_knuckle.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='robotiq_85_left_knuckle_link_fixed_joint_lump__robotiq_85_left_finger_link_visual_1'>
+        <pose>0.031526 0 -0.003763 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/left_finger.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='robotiq_85_left_finger_tip_joint' type='revolute'>
+      <pose relative_to='robotiq_85_left_knuckle_link'>0.037158 0 0.043422 0 -0 0</pose>
+      <parent>robotiq_85_left_knuckle_link</parent>
+      <child>robotiq_85_left_finger_tip_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='robotiq_85_left_finger_tip_link'>
+      <pose relative_to='robotiq_85_left_finger_tip_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.014567 -0.0008 0.016497 0 -0 0</pose>
+        <mass>0.0426859</mass>
+        <inertia>
+          <ixx>1.04815e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>3.5232e-06</ixz>
+          <iyy>1.19789e-05</iyy>
+          <iyz>0</iyz>
+          <izz>4.22784e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='robotiq_85_left_finger_tip_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/left_finger_tip.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='robotiq_85_left_finger_tip_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/left_finger_tip.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='robotiq_85_right_inner_knuckle_joint' type='revolute'>
+      <pose relative_to='wrist_3_link'>-0.0127 -0 0.06142 -0 -0 0</pose>
+      <parent>wrist_3_link</parent>
+      <child>robotiq_85_right_inner_knuckle_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='robotiq_85_right_inner_knuckle_link'>
+      <pose relative_to='robotiq_85_right_inner_knuckle_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.019268 5e-05 0.022222 0 -0 0</pose>
+        <mass>0.0296938</mass>
+        <inertia>
+          <ixx>9.42456e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>3.9636e-06</ixz>
+          <iyy>8.69056e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.33824e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='robotiq_85_right_inner_knuckle_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/right_inner_knuckle.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='robotiq_85_right_inner_knuckle_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/right_inner_knuckle.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='robotiq_85_right_knuckle_joint' type='revolute'>
+      <pose relative_to='wrist_3_link'>-0.030601 0 0.054905 -0 -0 0</pose>
+      <parent>wrist_3_link</parent>
+      <child>robotiq_85_right_knuckle_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-0.8</lower>
+          <upper>0</upper>
+          <effort>50</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='robotiq_85_right_knuckle_link'>
+      <pose relative_to='robotiq_85_right_knuckle_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.029387 4.5e-05 0.011107 0 -0 0</pose>
+        <mass>0.0564515</mass>
+        <inertia>
+          <ixx>1.67196e-05</ixx>
+          <ixy>-4.91092e-08</ixy>
+          <ixz>5.75738e-06</ixz>
+          <iyy>2.21234e-05</iyy>
+          <iyz>3.3281e-08</iyz>
+          <izz>1.28914e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='robotiq_85_right_knuckle_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/right_knuckle.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='robotiq_85_right_knuckle_link_fixed_joint_lump__robotiq_85_right_finger_link_collision_1'>
+        <pose>-0.031526 0 -0.003763 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/right_finger.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='robotiq_85_right_knuckle_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/right_knuckle.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='robotiq_85_right_knuckle_link_fixed_joint_lump__robotiq_85_right_finger_link_visual_1'>
+        <pose>-0.031526 0 -0.003763 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/right_finger.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='robotiq_85_right_finger_tip_joint' type='revolute'>
+      <pose relative_to='robotiq_85_right_knuckle_link'>-0.037158 0 0.043422 0 -0 0</pose>
+      <parent>robotiq_85_right_knuckle_link</parent>
+      <child>robotiq_85_right_finger_tip_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='robotiq_85_right_finger_tip_link'>
+      <pose relative_to='robotiq_85_right_finger_tip_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.014567 5e-05 0.016497 0 -0 0</pose>
+        <mass>0.0426859</mass>
+        <inertia>
+          <ixx>1.04815e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>-3.5232e-06</ixz>
+          <iyy>1.19789e-05</iyy>
+          <iyz>0</iyz>
+          <izz>4.22784e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='robotiq_85_right_finger_tip_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/collision/2f_85/right_finger_tip.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='robotiq_85_right_finger_tip_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/oj/ur3_ws/install/robotiq_description/share/robotiq_description/meshes/visual/2f_85/right_finger_tip.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <static>0</static>
+    <plugin name='gazebo_ros2_control' filename='libgazebo_ros2_control.so'>
+      <parameters/>
+    </plugin>
+  </model>
+</sdf>
